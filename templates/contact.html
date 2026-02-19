@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <h2 class="mb-3 text-center">Contact Us</h2>
+            <p class="text-muted text-center mb-4">
+                Have a question, feedback, or need help? We’d love to hear from you.
+            </p>
+
+            <div class="card shadow-sm p-4">
+                <p>
+                    📧 <strong>Email:</strong>
+                    <a href="mailto:support@todoapp.com">support@todoapp.com</a>
+                </p>
+
+                <p>
+                    📞 <strong>Phone:</strong> +91 98765 43210
+                </p>
+
+                <p>
+                    🕒 <strong>Support Hours:</strong><br>
+                    Monday – Friday: 9:00 AM – 6:00 PM
+                </p>
+
+                <hr>
+
+                <p class="text-muted">
+                    We usually respond within 24 hours.  
+                    Thank you for using <strong>ToDo App</strong> 💙
+                </p>
+            </div>
+             <div class="card shadow-sm p-4">
+                <h5 class="mb-3">Send us a message</h5>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

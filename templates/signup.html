@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Center wrapper */
+.signup-wrapper {
+    max-width: 420px;
+    width: 100%;
+    margin: 60px auto;
+    padding: 30px 25px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Heading */
+.signup-wrapper h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #222;
+}
+
+/* Form fields */
+.form-field {
+    margin-bottom: 18px;
+}
+
+.form-field label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Inputs */
+.form-field input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
+    font-size: 15px;
+}
+
+/* Focus */
+.form-field input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Error messages */
+.error {
+    color: #e53935;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #357abd;
+}
+
+/* Login link */
+.login-text {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+/* 🔹 Responsive adjustments */
+@media (max-width: 480px) {
+    .signup-wrapper {
+        margin: 30px 15px;
+        padding: 25px 20px;
+    }
+
+    .signup-wrapper h2 {
+        font-size: 22px;
+    }
+
+    button {
+        font-size: 15px;
+    }
+}
+</style>
+
+<div class="signup-wrapper">
+    <h2>Create Account</h2>
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        <div class="form-field">
+            <label>Username</label>
+            {{ form.username }}
+            {% for error in form.username.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-field">
+            <label>Email</label>
+            {{ form.email }}
+            {% for error in form.email.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-field">
+            <label>Password</label>
+            {{ form.password1 }}
+            {% for error in form.password1.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <div class="form-field">
+            <label>Confirm Password</label>
+            {{ form.password2 }}
+            {% for error in form.password2.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p class="login-text">
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+    </p>
+</div>
+
+{% endblock %}

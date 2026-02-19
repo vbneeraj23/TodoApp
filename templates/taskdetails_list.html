@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Task Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">{{ task.title }}</h4>
+        <p class="card-text"><strong>Description:</strong> {{ task.description }}</p>
+        <p><strong>Status:</strong>
+            {% if task.completed %}
+                <span class="badge bg-success">Completed</span>
+            {% else %}
+                <span class="badge bg-secondary">Pending</span>
+            {% endif %}
+        </p>
+    </div>
+</div>
+
+<a href="{% url 'task-list' %}" class="btn btn-secondary mt-3">Back to Tasks</a>
+<a href="" class="btn btn-danger mt-3">Delete</a>
+{% endblock %}
